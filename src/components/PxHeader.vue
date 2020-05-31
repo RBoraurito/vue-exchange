@@ -2,15 +2,19 @@
   <header class="shadow w-screen">
     <nav>
       <nav class="flex items-center justify-between flex-wrap bg-green-400 p-6">
-        <div
-          class="flex items-center flex-shrink-0 text-white mr-6 justify-start"
-        >
-          <px-icon></px-icon>
-          <span class="font-semibold text-xl tracking-tight">Vue-Exchange</span>
+        <div class="flex items-center flex-shrink-0 text-white mr-6 justify-start">
+          <px-icon style="display:inline"></px-icon>
+          <router-link :to="{ name: 'home' }">
+            <span class="font-semibold text-xl tracking-tight">Vue-Exchange</span>
+          </router-link>
         </div>
-        <div
-          class="hidden sm:block w-full blok flex-grow lg:flex lg:items-center lg:wauto"
-        >
+        <div class="hidden sm:block w-full block flex-grow lg:flex lg:items-center lg:wauto">
+          <router-link
+            v-for="l in link"
+            :key="l.title"
+            :to="l.to"
+            class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4"
+          >{{l.title}}</router-link>
           <div class="text-sm lg:flex-grow"></div>
         </div>
       </nav>
@@ -23,6 +27,12 @@ import PxIcon from "@/components/PxIcon";
 export default {
   components: {
     PxIcon
+  },
+  props: {
+    link: {
+      type: Array,
+      default: () => []
+    }
   }
 };
 </script>
